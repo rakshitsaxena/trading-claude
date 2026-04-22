@@ -1,0 +1,13 @@
+# Public repo. Secrets are injected at runtime by the scheduler prompt; never commit them.
+.claude/
+__pycache__/
+*.pyc
+.venv/
+venv/
+data_cache/
+backtest_results/
+logs/
+.DS_Store
+*.log
+.env
+config.yaml

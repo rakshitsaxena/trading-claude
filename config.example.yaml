@@ -1,0 +1,34 @@
+# Copy to config.yaml and fill in. config.yaml is gitignored.
+
+alpaca:
+  api_key: "PK_YOUR_PAPER_KEY"
+  api_secret: "YOUR_PAPER_SECRET"
+  base_url: "https://paper-api.alpaca.markets"
+
+telegram:
+  bot_token: "123456:ABCdef..."
+  chat_id: "123456789"
+
+# Stocks/ETFs the agent may consider. SPY is the benchmark.
+universe:
+  - SPY
+  - QQQ
+  - IWM
+
+# Risk caps the agent must respect when sizing.
+risk:
+  max_position_gbp: 800      # hard cap on any single position
+  max_gross_gbp: 900         # hard cap on total exposure
+  gbp_usd_rate: 1.27         # rough FX for sizing (refresh occasionally)
+
+# Which strategies the live agent considers. Backtests use their own configs.
+active_strategies:
+  - orb
+  - gap_fade
+  - vwap_reversion
+
+# Claude model for the decision agent.
+model: "claude-opus-4-7"
+
+# How much history to show Claude each run.
+history_window_days: 30
