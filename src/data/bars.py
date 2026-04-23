@@ -65,19 +65,34 @@ def fetch(req: BarRequest, use_cache: bool = True) -> pd.DataFrame:
         if cached.index.tz is None:
             cached.index = cached.index.tz_localize("UTC").tz_convert(ET)
 
-    end = datetime.now(timezone.utc)
-    start = end - timedelta(days=req.days)
-
-    raw = yf.download(
-        req.symbol,
-        start=start,
-        end=end,
-        interval=req.interval,
-        auto_adjust=False,
-        progress=False,
-        prepost=False,
-        threads=False,
-    )
+    # yfinance is finicky with start/end on intraday intervals — it sometimes
+    # rejects ranges it claims are out-of-window. `period=` is reliable for
+    # intraday, and we fall back to start/end for daily+ where period is coarser.
+    intraday = req.interval.endswith("m") or req.interval.endswith("h")
+    if intraday:
+        days = min(req.days, 60 if req.interval.endswith("m") else 730)
+        raw = yf.download(
+            req.symbol,
+            period=f"{days}d",
+            interval=req.interval,
+            auto_adjust=False,
+            progress=False,
+            prepost=False,
+            threads=False,
+        )
+    else:
+        end = datetime.now(timezone.utc)
+        start = end - timedelta(days=req.days)
+        raw = yf.download(
+            req.symbol,
+            start=start,
+            end=end,
+            interval=req.interval,
+            auto_adjust=False,
+            progress=False,
+            prepost=False,
+            threads=False,
+        )
     fresh = _normalize(raw, req.symbol)
 
     if cached.empty:
