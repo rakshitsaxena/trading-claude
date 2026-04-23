@@ -9,26 +9,47 @@ telegram:
   bot_token: "123456:ABCdef..."
   chat_id: "123456789"
 
-# Stocks/ETFs the agent may consider. SPY is the benchmark.
+# Universe: sector ETFs + broad market. Gap reversion works best on liquid ETFs.
+# Add speculative single names here only if you want them seen as context.
 universe:
+  - XLK
+  - XLF
+  - XLE
+  - XLV
+  - XLI
+  - XLY
+  - XLP
+  - XLU
+  - XLB
+  - XLRE
+  - XLC
   - SPY
   - QQQ
   - IWM
 
-# Risk caps the agent must respect when sizing.
-risk:
-  max_position_gbp: 800      # hard cap on any single position
-  max_gross_gbp: 900         # hard cap on total exposure
-  gbp_usd_rate: 1.27         # rough FX for sizing (refresh occasionally)
+# Portfolio risk controls — enforced in code AFTER Claude proposes the basket.
+# Any proposed position exceeding these is clamped.
+portfolio:
+  max_position_pct: 0.25     # per-leg cap as fraction of equity
+  max_gross_pct: 1.20        # sum of |weights| cap (modest leverage ok on paper)
+  max_positions: 4           # hard cap on leg count
+  min_conviction: 0.30       # don't take signals below this
 
-# Which strategies the live agent considers. Backtests use their own configs.
-active_strategies:
-  - orb
-  - gap_fade
-  - vwap_reversion
+# 5-day realised drawdown halt. If rolling 5d portfolio return <= this, force FLAT.
+dd_halt_pct: -0.03
 
-# Claude model for the decision agent.
+# Signal config.
+signals:
+  gap_reversion:
+    min_abs_z: 1.0
+    lookback_days: 30
+  # pair_divergence:        # coming in a later iteration
+  # vwap_reversion:
+
+# Claude model + roles.
 model: "claude-opus-4-7"
+model_brief: "claude-haiku-4-5-20251001"   # cheaper model for daily brief
 
-# How much history to show Claude each run.
+# How much history to show the allocator each run.
 history_window_days: 30
+daily_briefs_to_include: 5

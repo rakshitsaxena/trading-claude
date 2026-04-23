@@ -18,7 +18,11 @@ def load(name: str) -> Strategy:
     if name == "ensemble":
         from .ensemble import Ensemble
         return Ensemble()
+    if name == "social_sentiment":
+        from .social_sentiment import SocialSentiment
+        return SocialSentiment()
     raise ValueError(f"unknown strategy: {name}")
 
 
-ALL = ["orb", "gap_fade", "overnight_momentum", "vwap_reversion", "ensemble"]
+ALL = ["orb", "gap_fade", "overnight_momentum", "vwap_reversion", "ensemble",
+       "social_sentiment"]
