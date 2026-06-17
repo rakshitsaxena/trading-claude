@@ -24,3 +24,10 @@ No positions taken. SPY flat intraday (+0.0%). Regime classifier returned empty�
 - No positions taken; cash day. SPY flat intraday. Classifier regime empty—allocation likely deferred on low-conviction signal.
 - Zero alpha, zero P&L. Conservative positioning appropriate if vol/liquidity regime uncertain.
 - Monitor: confirm regime classification is firing tomorrow. If signals remain muted, consider broadening universe or lowering entry thresholds.
+
+---
+**2026-06-17**
+
+- No positions taken; cash day. SPY flat. Classifier likely signaled low conviction or regime ambiguity.
+- Regime dict empty—insufficient data or transitional state. No thesis to validate.
+- Action: Confirm classifier is receiving clean feeds tomorrow; verify universe scan is broad enough to trigger entry signals on non-flat days.
