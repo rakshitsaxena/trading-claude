@@ -31,3 +31,10 @@ No positions taken. SPY flat intraday (+0.0%). Regime classifier returned empty�
 - No positions taken; cash day. SPY flat. Classifier likely signaled low conviction or regime ambiguity.
 - Regime dict empty—insufficient data or transitional state. No thesis to validate.
 - Action: Confirm classifier is receiving clean feeds tomorrow; verify universe scan is broad enough to trigger entry signals on non-flat days.
+
+---
+**2026-06-19**
+
+- No positions taken; flat day with zero allocation despite SPY unchanged. Regime classifier empty—likely awaiting signal threshold or pre-market data. 
+- Zero alpha vs benchmark confirms no execution (neutral by design, not by accident).
+- Tomorrow: confirm regime inputs are flowing to classifier. If signals present but positions skipped, debug trigger logic.
