@@ -38,3 +38,8 @@ No positions taken. SPY flat intraday (+0.0%). Regime classifier returned emptyâ
 - No positions taken; flat day with zero allocation despite SPY unchanged. Regime classifier emptyâ€”likely awaiting signal threshold or pre-market data. 
 - Zero alpha vs benchmark confirms no execution (neutral by design, not by accident).
 - Tomorrow: confirm regime inputs are flowing to classifier. If signals present but positions skipped, debug trigger logic.
+
+---
+**2026-06-22**
+
+No positions taken. Flat cash. SPY +0.0%. Regime classifier produced no signal or allocator passed. Either market conditions don't fit thesis (likely low vol, mean-reversion regime) or signal quality threshold not met. Resume monitoring tomorrow; no action needed unless regime tilts.
