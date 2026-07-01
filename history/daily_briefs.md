@@ -55,3 +55,10 @@ No positions taken. Flat day—SPY +0.0%, no alpha. Regime classifier empty; no 
 - Regime classifier shows no clear signal—likely sideways/low-conviction environment.
 - Thesis hold: waiting for regime clarity before re-entry.
 - Tomorrow: monitor for breakout setup or regime shift; consider widening scan if chop persists >2 more sessions.
+
+---
+**2026-07-01**
+
+No positions taken. Cash. Regime classifier returned empty—likely insufficient signal or market conditions outside trained envelope. SPY flat intraday. Zero alpha meaningless without allocation.
+
+**Tomorrow:** Lower entry threshold or widen universe scan. If classifier still silent, confirm data feed and feature pipeline. Cash is fine but only if intentional.
